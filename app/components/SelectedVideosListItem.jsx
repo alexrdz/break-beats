@@ -1,8 +1,8 @@
 import React from 'react'
 
-const SelectedVideosListItem = ({selectedVideo}) => {
+const SelectedVideosListItem = ({selectedVideo, onItemClick}) => {
   return (
-    <li className="Selected-videos-list__item">
+    <li className="Selected-videos-list__item" onClick={() => { onItemClick(selectedVideo) }}>
       {selectedVideo}
     </li>
   )

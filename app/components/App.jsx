@@ -14,6 +14,7 @@ export default class App extends Component {
 
     this.handleSearch = this.handleSearch.bind(this)
     this.handleItemClick = this.handleItemClick.bind(this)
+    this.addOrRemoveVideo = this.addOrRemoveVideo.bind(this)
   }
 
   componentDidMount () {
@@ -35,6 +36,9 @@ export default class App extends Component {
 
 
   handleItemClick (video) {
+    if(typeof video === 'string' ) {
+      return this.addOrRemoveVideo(video)
+    }
     console.log(video)
     let videoId = video.id.videoId
     let videoTitle = video.snippet.title
@@ -43,6 +47,11 @@ export default class App extends Component {
     // otherwise, if it's in seleted videos, remove it
     // NOW prevent it from being added twice
     
+    this.addOrRemoveVideo(videoTitle)
+    
+  }
+
+  addOrRemoveVideo (videoTitle) {
     if(this.state.selectedVideos.length < 3 && this.state.selectedVideos.indexOf(videoTitle) === -1) {
       this.setState({ selectedVideos: this.state.selectedVideos.concat(videoTitle) })
     } else {
@@ -50,7 +59,6 @@ export default class App extends Component {
         selectedVideos: this.state.selectedVideos.filter((selectedVideo) => selectedVideo !== videoTitle)
       })
     }
-    
   }
 
   

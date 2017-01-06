@@ -5,7 +5,7 @@ import SelectedVideosList from './SelectedVideosList'
 const VideoList = ({videos, onItemClick, selectedVideos}) => {
   return (
     <div>
-      <SelectedVideosList selectedVideos={selectedVideos} />
+      <SelectedVideosList selectedVideos={selectedVideos} onItemClick={onItemClick} />
 
       <ul className="Video-list grid-flex-container">
         { videos.map(video => <VideoListItem key={video.etag} video={video} onItemClick={onItemClick} />) }
