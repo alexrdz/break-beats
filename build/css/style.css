@@ -1,0 +1,22 @@
+.Video-list {
+  margin-top: 5rem;
+}
+
+
+
+  .Video-list__item {
+    cursor: pointer;
+    list-style: none;
+    margin-bottom: 2rem;
+  }
+  .Video-list__title {
+    height: 3rem;
+  }
+
+
+.Selected-videos-list {
+  width: 50%;
+}
+  .Selected-videos-list__item {
+    list-style: none;
+  }
