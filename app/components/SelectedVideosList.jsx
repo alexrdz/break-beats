@@ -2,7 +2,6 @@ import React from 'react'
 import SelectedVideosListItem from './SelectedVideosListItem'
 
 const SelectedVideosList = ({selectedVideos, onItemClick}) => {
-  console.log(selectedVideos)
   return (
     <div>
       <ul className="Selected-videos-list">

@@ -18,5 +18,11 @@
   width: 50%;
 }
   .Selected-videos-list__item {
+    cursor : pointer;
     list-style: none;
+    transition: color .3s
+  }
+  .Selected-videos-list__item:hover {
+    color: #aaa;
+    text-decoration: line-through;
   }
