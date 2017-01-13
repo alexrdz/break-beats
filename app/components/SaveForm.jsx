@@ -21,6 +21,9 @@ class SaveForm extends React.Component {
   handleSave (e) {
     e.preventDefault()
     this.props.savePlaylist(this.state.titleInput, this.props.videos)
+    this.setState({
+      titleInput: ''
+    })
   }
 
   render () {

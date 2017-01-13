@@ -33,16 +33,18 @@ export default class App extends Component {
 
 
   componentDidMount () {
-    this.ref = base.fetch('playlists', {
+    this.ref = base.bindToState('playlists', {
       context: this,
       asArray: true,
-      then(data){
-        this.setState({
-          savedPlaylists: data
-        })
-      }
+      state: 'savedPlaylists'
     })
-  }  
+    console.log(this.state.playlists)
+  }
+
+    componentWillUnmount () {
+      base.removeBinding(this.ref)
+    }
+    
   
 
   handleSearchInput (e) {
@@ -110,13 +112,18 @@ export default class App extends Component {
         videoPosters: this.state.selectedVideosPosters
       }
     })
+
+    this.setState({
+      selectedVideos: []
+    })
   }
 
   
   render(){
-    console.log('nambe', this.state.savedPlaylists)
-    const savedPlaylists = this.state.savedPlaylists.map((vid, i) => { return <li key={vid.key || i}>{vid.key}</li> })
-    console.log(savedPlaylists)
+    const savedPlaylists = this.state.savedPlaylists.map((vid, i) => { return <li key={vid.key || i}>
+      <h6>{vid.playlistTitle}:</h6>
+        {vid.videoPosters.map(poster => { return <div><img src={poster} alt="video" /><br/></div> })}
+    </li> })
     return (
       <div className="container">
         <h1>Break Beats</h1>
