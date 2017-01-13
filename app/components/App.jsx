@@ -20,7 +20,8 @@ export default class App extends Component {
       videos: [],
       selectedVideos: [],
       selectedVideosTitles: [],
-      selectedVideosPosters: []
+      selectedVideosPosters: [],
+      savedPlaylists: []
     }
 
     this.handleSearchInput = this.handleSearchInput.bind(this)
@@ -32,13 +33,16 @@ export default class App extends Component {
 
 
   componentDidMount () {
-    // this.ref = base.bindToState('playlists', {
-    //   context: this,
-    //   asArray: true,
-    //   state: 'selectedVideos'
-    // })
-    
-  }
+    this.ref = base.fetch('playlists', {
+      context: this,
+      asArray: true,
+      then(data){
+        this.setState({
+          savedPlaylists: data
+        })
+      }
+    })
+  }  
   
 
   handleSearchInput (e) {
@@ -110,9 +114,17 @@ export default class App extends Component {
 
   
   render(){
+    console.log('nambe', this.state.savedPlaylists)
+    
+    const savedPlaylists = this.state.savedPlaylists.map((vid, i) => { return <li key={vid.key || i}>{vid.key}</li> })
+    console.log(savedPlaylists)
     return (
       <div className="container">
         <h1>Break Beats</h1>
+        <ul>
+          <h3>saved playlists</h3>
+          {savedPlaylists}
+        </ul>
         <Search handleSearch={this.handleSearch} handleSearchInput={this.handleSearchInput} />
         <VideoList 
           videos={this.state.videos} 
