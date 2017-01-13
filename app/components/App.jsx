@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 import Search from './Search'
 import VideoList from './VideoList'
 import {GetSearchResults} from '../utils/helpers'
@@ -32,18 +33,23 @@ export default class App extends Component {
   }
 
 
-  componentDidMount () {
+  componentWillMount () {
     this.ref = base.bindToState('playlists', {
       context: this,
       asArray: true,
       state: 'savedPlaylists'
     })
-    console.log(this.state.playlists)
+    console.log(this.state.savedPlaylists)
   }
 
-    componentWillUnmount () {
-      base.removeBinding(this.ref)
-    }
+  componentDidMount () {
+    console.log(this.state.savedPlaylists)
+  }
+  
+
+  componentWillUnmount () {
+    base.removeBinding(this.ref)
+  }
     
   
 
@@ -120,10 +126,13 @@ export default class App extends Component {
 
   
   render(){
-    const savedPlaylists = this.state.savedPlaylists.map((vid, i) => { return <li key={vid.key || i}>
-      <h6>{vid.playlistTitle}:</h6>
-        {vid.videoPosters.map(poster => { return <div><img src={poster} alt="video" /><br/></div> })}
-    </li> })
+    const savedPlaylists = this.state.savedPlaylists.map((vid) => { 
+      const playlistTitle = (vid.playlistTitle).replace(/ /g,'-')
+      return <Link to={{ pathname: `breaks/${playlistTitle}`, state: vid }} key={vid.key}>
+      <li>
+        <h6>{vid.playlistTitle}:</h6>
+          {vid.videoPosters.map(poster => { return <div key={poster}><img src={poster} alt="video" /><br/></div> })}
+      </li></Link> })
     return (
       <div className="container">
         <h1>Break Beats</h1>
@@ -139,7 +148,7 @@ export default class App extends Component {
           selectedVideosTitles={this.state.selectedVideosTitles} 
           selectedVideosPosters={this.state.selectedVideosPosters}
           savePlaylist={this.savePlaylist} />
-        {/* this.props.children */}
+          { this.props.children }
       </div>
     )
   }

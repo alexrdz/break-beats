@@ -26,3 +26,12 @@
     color: #aaa;
     text-decoration: line-through;
   }
+
+
+iframe {
+  border: 0;
+  display: block;
+  height: 240px;
+  /*height: */
+  width: 100%;
+}
