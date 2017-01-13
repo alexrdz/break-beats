@@ -13,7 +13,7 @@ const VideoList = ({videos, onItemClick, selectedVideos, selectedVideosTitles, s
         savePlaylist={savePlaylist} />
 
       <ul className="Video-list grid-flex-container">
-        { videos.map(video => <VideoListItem video={video} onItemClick={onItemClick} />) }
+        { videos.map(video => <VideoListItem key={video.etag} video={video} onItemClick={onItemClick} />) }
       </ul>
     </div>
   )

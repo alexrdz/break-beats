@@ -115,7 +115,6 @@ export default class App extends Component {
   
   render(){
     console.log('nambe', this.state.savedPlaylists)
-    
     const savedPlaylists = this.state.savedPlaylists.map((vid, i) => { return <li key={vid.key || i}>{vid.key}</li> })
     console.log(savedPlaylists)
     return (

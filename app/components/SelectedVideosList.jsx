@@ -6,8 +6,9 @@ const SelectedVideosList = ({selectedVideos, selectedVideosTitles, selectedVideo
   return (
     <div>
       <ul className="Selected-videos-list">
-        {selectedVideos.map(selectedVideo => 
+        {selectedVideos.map((selectedVideo, i) => 
           <SelectedVideosListItem 
+            key={selectedVideo}
             onItemClick={onItemClick} 
             selectedVideo={selectedVideo} 
             indexo={selectedVideos.indexOf(selectedVideo)}
