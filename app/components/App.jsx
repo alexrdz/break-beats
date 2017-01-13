@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
-import Search from './Search'
-import VideoList from './VideoList'
+
 import {GetSearchResults} from '../utils/helpers'
 import Rebase from 're-base'
+
+import Search from './Search'
+import VideoList from './VideoList'
+import SavedPlaylists from './SavedPlaylists'
+
 
 const base = Rebase.createClass({
       apiKey: "AIzaSyDfkygwxY09jTYii6t6ZSicTS_9BS6sdpA",
@@ -126,20 +129,11 @@ export default class App extends Component {
 
   
   render(){
-    const savedPlaylists = this.state.savedPlaylists.map((vid) => { 
-      const playlistTitle = (vid.playlistTitle).replace(/ /g,'-')
-      return <Link to={{ pathname: `breaks/${playlistTitle}`, state: vid }} key={vid.key}>
-      <li>
-        <h6>{vid.playlistTitle}:</h6>
-          {vid.videoPosters.map(poster => { return <div key={poster}><img src={poster} alt="video" /><br/></div> })}
-      </li></Link> })
     return (
       <div className="container">
         <h1>Break Beats</h1>
-        <ul>
-          <h3>saved playlists</h3>
-          {savedPlaylists}
-        </ul>
+        <SavedPlaylists savedPlaylists={this.state.savedPlaylists} />
+
         <Search handleSearch={this.handleSearch} handleSearchInput={this.handleSearchInput} />
         <VideoList 
           videos={this.state.videos} 
