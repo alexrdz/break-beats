@@ -106,12 +106,6 @@ export default class App extends Component {
   }
 
   savePlaylist (playlistTitle) {
-    // for reading from firebase
-    // this.ref = base.bindToState('playlists', {
-    //   context: this,
-    //   asArray: true,
-    //   state: 'selectedVideos'
-    // })
     // save to firebase
     base.push('playlists/', {
       data: {
@@ -130,11 +124,10 @@ export default class App extends Component {
   
   render(){
     return (
-      <div className="container">
-        <h1>Break Beats</h1>
-        <SavedPlaylists savedPlaylists={this.state.savedPlaylists} />
-
-        <Search handleSearch={this.handleSearch} handleSearchInput={this.handleSearchInput} />
+      <div>
+        
+        <Search handleSearch={this.handleSearch} />
+        
         <VideoList 
           videos={this.state.videos} 
           onItemClick={this.handleItemClick} 
@@ -143,6 +136,8 @@ export default class App extends Component {
           selectedVideosPosters={this.state.selectedVideosPosters}
           savePlaylist={this.savePlaylist} />
           { this.props.children }
+        
+        <SavedPlaylists savedPlaylists={this.state.savedPlaylists} />
       </div>
     )
   }

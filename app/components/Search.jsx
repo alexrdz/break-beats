@@ -29,11 +29,15 @@ class Search extends React.Component {
 
   render () {
     return (
-      <form className="form Search" onSubmit={this.handleSearch}>
-        <div className="form-element">
-          <label htmlFor='search-input'>Search Youtube</label>
-          <input onChange={this.handleSearchInput} value={this.state.searchInput} type='text' placeholder='Search Youtube' className='form-input' />
-          <button type="submit" className="button">Search</button>
+      <form className="Search-form" onSubmit={this.handleSearch}>
+        <div className="Grid">
+          <div className="Cell ten add-padding--small">
+            {/*<label htmlFor='search-input'>Search Youtube</label>*/}
+            <input onChange={this.handleSearchInput} value={this.state.searchInput} type='text' placeholder='Search Youtube' className='Search-form__input' />
+          </div>
+          <div className="Cell two">
+            <button type="submit" className="button-primary">Search</button>
+          </div>
         </div>
       </form>
     )
